@@ -65,7 +65,4 @@ class Yak
 			puts "#{str}"
 		end
 	end
-
 end
-
-Yak.run
