@@ -29,6 +29,8 @@ class Yak
 	
 	# short usage banner
 	@simple_usage = "Use `#{File.basename($0)} --help` for available options."
+	@server = nil
+	@line = nil
 	
 	def self.run
 		
@@ -100,36 +102,29 @@ class Yak
 		
 		begin
 			timeout(30) do
-				server = TCPSocket.open(host, port)
+				# establish connection
+				@server = TCPSocket.open(host, port)
+				
+				# wait for server response
+				@line = @server.readline
 			end
 		rescue Timeout::Error => ex
-			puts "host connect: timeout"
+			puts "host connect: host timeout"
 			puts @simple_usage
 			exit 1
-		rescue	
-			puts "host connect: unable to establish connection"
-			puts @simple_usage
-			exit 1
-		end
-
-		# wait for server response command
-		begin
-			timeout(30) do
-				line = server.readline
-			end
-		rescue Timeout::Error => ex
-			puts "host connect: timeout"
+		rescue
+			puts "host connect: cannot connect"
 			puts @simple_usage
 			exit 1
 		end
 		
-		if line.start_with?('yak=>')
+		if @line.start_with?('yak=>')
 			
 			# read from standard input and send
 			# text line by line to server
 			STDIN.each do |str|
 				#str.chomp!
-				server.puts "#{str}"
+				@server.puts "#{str}"
 			end
 		else
 			puts "host connect: unexpected server response"
@@ -139,9 +134,10 @@ class Yak
 	end
 	
 	def self.listen(port)
-		server = TCPServer.open(port)
+		@server = TCPServer.open(port)
 		loop do
-			client = server.accept
+			client = @server.accept
+			client.puts "yak=>version:0.1.0"
 			client.each do |str|
 				#str.chomp!
 				puts "#{str}"
