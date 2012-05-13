@@ -54,7 +54,7 @@ class OptionReader
 				options.connect_port << port
 			end
 
-			opts.on("-l", "--liste NUM", "Port number for incoming connection") do |port|
+			opts.on("-l", "--listen NUM", "Port number for incoming connection") do |port|
 				options.listen_port << port
 			end
 
