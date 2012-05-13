@@ -23,46 +23,129 @@ require 'yak/optionreader'
 require 'optparse'
 require 'ostruct'
 require 'socket'
+require 'timeout'
 
 class Yak
+	
+	# short usage banner
+	@simple_usage = "Use `#{File.basename($0)} --help` for available options."
 	
 	def self.run
 		
 		# start processing command line arguments
 		begin
-		
-			# short usage banner
-			simple_usage = "Use `#{File.basename($0)} --help` for available options."
-		
-			# test for zero arguments
-			if ARGV.empty? then
-
-				# TODO default to listen mode
-				puts "Undefined"
-				exit
-			end
-			
-			# parse command-line arguments
 			options = OptionReader.parse(ARGV)
-			
 		rescue OptionParser::InvalidOption => t
 			puts t
-			puts simple_usage
+			puts @simple_usage
 			exit
 		rescue OptionParser::MissingArgument => m
 			puts m
-			puts simple_usage
+			puts @simple_usage
 			exit
+		end
+		
+		# ensure host argument is specified if a port is specified
+		if options.connect_port.any? and !options.connect_host.any?
+			puts "host connect: no host specified"
+			puts @simple_usage
+			exit 1
+		end
+		
+		if options.connect_host.any? and !options.connect_port.any?
+			options.connect_port << "4000";
+		end
+		
+		# validate host argument
+		if options.connect_host.any?
+			# TODO
+		end
+		
+		# validate host port
+		if options.connect_port.any?
+			if options.connect_port.first.to_i > 0 and options.connect_port.first.to_i < 65535
+				# valid port provided
+				
+			else
+				puts "invalid port: #{options.connect_port.first.to_s}"
+				puts @simple_usage
+				exit 1
+			end
+		end
+		
+		# validate listen port
+		if options.connect_port.any?
+			if options.connect_port.first.to_i > 0 and options.connect_port.first.to_i < 65535
+				# valid port provided
+				
+			else
+				puts "invalid port: #{options.connect_port.first.to_s}"
+				puts @simple_usage
+				exit 1
+			end
+		else
+			options.connect_port << "4000"
+		end
+	
+		# assume connection mode wherever a host has been specified,
+		# otherwise listen for incoming connections
+		if options.connect_host.any?
+			connect(options.connect_host.first, options.connect_port.first.to_i)
+		else
+			listen(options.listen_port.first.to_i)
 		end
 	end
 
-	def self.msgRemote
-		# read from standard input
-		STDIN.each do |str|
-			str.chomp!
+	def self.connect(host, port)
+		
+		begin
+			timeout(30) do
+				server = TCPSocket.open(host, port)
+			end
+		rescue Timeout::Error => ex
+			puts "host connect: timeout"
+			puts @simple_usage
+			exit 1
+		rescue	
+			puts "host connect: unable to establish connection"
+			puts @simple_usage
+			exit 1
+		end
+
+		# wait for server response command
+		begin
+			timeout(30) do
+				line = server.readline
+			end
+		rescue Timeout::Error => ex
+			puts "host connect: timeout"
+			puts @simple_usage
+			exit 1
+		end
+		
+		if line.start_with?('yak=>')
 			
-			# TODO
-			puts "#{str}"
+			# read from standard input and send
+			# text line by line to server
+			STDIN.each do |str|
+				#str.chomp!
+				server.puts "#{str}"
+			end
+		else
+			puts "host connect: unexpected server response"
+			puts @simple_usage
+			exit 1
+		end
+	end
+	
+	def self.listen(port)
+		server = TCPServer.open(port)
+		loop do
+			client = server.accept
+			client.each do |str|
+				#str.chomp!
+				puts "#{str}"
+			end
 		end
 	end
 end
