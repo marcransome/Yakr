@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
 	s.version		= '0.1.0'
 	s.date			= '2012-05-13'
 	s.summary		= 'TCP/IP output tool'
-	s.description	= 'Yak is a minimalist TCP/IP command-line tool that takes data from the standard input stream and sends it to a remote host.'
+	s.description	= 'Yak is a minimalist TCP/IP tool for sending command output or arbitrary data to a remote host.'
 	s.authors		= ["Marc Ransome"]
 	s.email			= 'marc.ransome@fidgetbox.co.uk'
 	s.files			= `git ls-files`.split("\n")
