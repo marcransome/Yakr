@@ -34,6 +34,12 @@ class Yak
 	
 	def self.run
 		
+		# test for zero arguments
+		if ARGV.empty? then
+			puts @simple_usage
+			exit 1
+		end
+		
 		# start processing command line arguments
 		begin
 			options = OptionReader.parse(ARGV)
@@ -138,14 +144,22 @@ class Yak
 	end
 	
 	def self.listen(port)
-		@server = TCPServer.open(port)
-		loop do
-			client = @server.accept
-			client.puts "yak=>version:0.1.0"
-			client.each do |str|
-				#str.chomp!
-				puts "#{str}"
+		begin
+			@server = TCPServer.open(port)
+			loop do
+				client = @server.accept
+				client.puts "yak=>version:0.1.0"
+				client.each do |str|
+					#str.chomp!
+					puts "#{str}"
+				end
 			end
+		rescue Interrupt
+			puts "\nCancelled, exiting.."
+			exit 1
+		rescue
+			puts "listen server: unable to start"
+			exit 1
 		end
 	end
 end
