@@ -108,29 +108,33 @@ class Yak
 				# wait for server response
 				@line = @server.readline
 			end
+		
+			if @line.start_with?('yak=>')
+				
+				# read from standard input and send
+				# text line by line to server
+				STDIN.each do |str|
+					#str.chomp!
+					@server.puts "#{str}"
+				end
+			else
+				puts "host connect: unexpected server response"
+				puts @simple_usage
+				exit 1
+			end
+		
+		rescue Interrupt
+			puts "\nCancelled, exiting.."
+			exit 1
 		rescue Timeout::Error => ex
-			puts "host connect: host timeout"
+			puts "host connect: timed out"
 			puts @simple_usage
 			exit 1
 		rescue
 			puts "host connect: cannot connect"
 			puts @simple_usage
 			exit 1
-		end
-		
-		if @line.start_with?('yak=>')
-			
-			# read from standard input and send
-			# text line by line to server
-			STDIN.each do |str|
-				#str.chomp!
-				@server.puts "#{str}"
-			end
-		else
-			puts "host connect: unexpected server response"
-			puts @simple_usage
-			exit 1
-		end
+		end		
 	end
 	
 	def self.listen(port)
