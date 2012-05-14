@@ -27,6 +27,8 @@ require 'timeout'
 
 class Yak
 	
+	VERSION = "0.1"
+	
 	# short usage banner
 	@simple_usage = "Use `#{File.basename($0)} --help` for available options."
 	@server = nil
@@ -150,7 +152,7 @@ class Yak
 			@server = TCPServer.open(port)
 			loop do
 				client = @server.accept
-				client.puts "yak=>version:0.1.0"
+				client.puts "yak=>version:#{VERSION}"
 				client.each do |str|
 					#str.chomp!
 					puts "#{str}"

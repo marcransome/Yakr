@@ -21,14 +21,14 @@
 
 Gem::Specification.new do |s|
 	s.name			= 'yak'
-	s.version		= '0.1.0'
-	s.date			= '2012-05-13'
+	s.version		= '0.1'
+	s.date			= '2012-05-14'
 	s.summary		= 'TCP/IP output tool'
 	s.description	= 'Yak is a minimalist command-line network tool for sending command output or arbitrary data to a remote host using TCP/IP.'
 	s.authors		= ["Marc Ransome"]
 	s.email			= 'marc.ransome@fidgetbox.co.uk'
 	s.files			= `git ls-files`.split("\n")
 	s.executables		<< 'yak' 
-	s.homepage		= 'http://marcransome.github.com/yak'
+	s.homepage		= 'http://marcransome.github.com/Yak'
 	s.license		= 'GPL-3'
 end
