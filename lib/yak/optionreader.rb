@@ -34,9 +34,10 @@ class OptionReader
 		options.connect_host = []
 		options.connect_port = []
 		options.listen_port = []
+		options.limit_lines = 0
 
 		opts = OptionParser.new do |opts|
-			opts.banner = "Usage: #{File.basename($0)} [-c HOST -p PORT] | [-l PORT]"
+			opts.banner = "Usage: #{File.basename($0)} [-c HOST -p PORT] | [-l PORT -m NUM]"
 
 			opts.separator ""			
 
@@ -44,7 +45,7 @@ class OptionReader
 			opts.separator "to a remote host.  These options are mutually exclusive."
 
 			opts.separator ""
-			opts.separator "Connection options:"
+			opts.separator "Client mode options:"
 
 			opts.on("-c", "--connect HOST", "Specify the remote host to connect to") do |host|
 				options.connect_host << host
@@ -54,9 +55,17 @@ class OptionReader
 				options.connect_port << port
 			end
 
+			opts.separator ""
+			opts.separator "Server mode options:"
+
 			opts.on("-l", "--listen NUM", "Port number for incoming connection") do |port|
 				options.listen_port << port
 			end
+			
+			opts.on("-m", "--max NUM", "Limit output to NUM lines, then exit") do |lines|
+				options.limit_lines = lines
+			end
+
 
 			opts.separator ""
 			opts.separator "Misc options:"

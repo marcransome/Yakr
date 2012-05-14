@@ -104,7 +104,7 @@ class Yak
 		if options.connect_host.any?
 			connect(options.connect_host.first, options.connect_port.first.to_i)
 		else
-			listen(options.listen_port.first.to_i)
+			listen(options.listen_port.first.to_i, options.limit_lines.to_i)
 		end
 	end
 
@@ -147,20 +147,30 @@ class Yak
 		end		
 	end
 	
-	def self.listen(port)
+	def self.listen(port, lines_arg)
 		begin
 			@server = TCPServer.open(port)
 			loop do
 				client = @server.accept
 				client.puts "yak=>version:#{VERSION}"
+
+				max_lines = lines_arg
+				
 				client.each do |str|
+					
+					exit 0 if max_lines == 0 and lines_arg > 0
+					
 					#str.chomp!
 					puts "#{str}"
+					
+					# decrement line counter
+					max_lines -= 1
 				end
 			end
 		rescue Interrupt
 			puts "\nCancelled, exiting.."
 			exit 1
+		rescue SystemExit
 		rescue
 			puts "listen server: unable to start"
 			exit 1
