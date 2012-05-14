@@ -61,7 +61,9 @@ class Yak
 		end
 		
 		if options.connect_host.any? and !options.connect_port.any?
-			options.connect_port << "4000";
+			puts "host connect: no port specified"
+			puts @simple_usage
+			exit 1
 		end
 		
 		# validate host argument
@@ -137,7 +139,7 @@ class Yak
 			puts @simple_usage
 			exit 1
 		rescue
-			puts "host connect: cannot connect"
+			puts "host connect: unable to connect"
 			puts @simple_usage
 			exit 1
 		end		
