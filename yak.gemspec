@@ -21,7 +21,7 @@
 
 Gem::Specification.new do |s|
 	s.name			= 'yak'
-	s.version		= '0.1'
+	s.version		= '0.2'
 	s.date			= '2012-05-14'
 	s.summary		= 'TCP/IP output tool'
 	s.description	= 'Yak is a minimalist command-line network tool for sending command output or arbitrary data to a remote host using TCP/IP.'

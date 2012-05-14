@@ -27,7 +27,7 @@ require 'timeout'
 
 class Yak
 	
-	VERSION = "0.1"
+	VERSION = "0.2"
 	
 	# short usage banner
 	@simple_usage = "Use `#{File.basename($0)} --help` for available options."
