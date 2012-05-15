@@ -141,7 +141,7 @@ class Yak
 			puts USAGE_BANNER
 			exit 1
 		ensure
-			@server.close
+			@server.close unless @server.nil?
 		end		
 	end
 	
@@ -173,7 +173,7 @@ class Yak
 			puts "listen server: unable to start"
 			exit 1
 		ensure
-			@server.close
+			@server.close unless @server.nil?
 		end
 	end
 end
