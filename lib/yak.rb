@@ -140,6 +140,8 @@ class Yak
 			puts "host connect: unable to connect"
 			puts USAGE_BANNER
 			exit 1
+		ensure
+			@server.close
 		end		
 	end
 	
@@ -170,6 +172,8 @@ class Yak
 		rescue
 			puts "listen server: unable to start"
 			exit 1
+		ensure
+			@server.close
 		end
 	end
 end
