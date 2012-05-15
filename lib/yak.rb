@@ -73,12 +73,9 @@ class Yak
 			# TODO
 		end
 		
-		# validate host port
+		# test for invalid host port
 		if options.connect_port.any?
-			if options.connect_port.first.to_i > 0 and options.connect_port.first.to_i < 65535
-				# valid port provided
-				
-			else
+			if !(options.connect_port.first.to_i > 0) and !(options.connect_port.first.to_i < 65535)
 				puts "invalid port: #{options.connect_port.first.to_s}"
 				puts @simple_usage
 				exit 1
