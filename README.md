@@ -41,7 +41,7 @@ The server instance of Yakr can be told to redirect the data it receives to a fi
 
 	$ yakr -l 2600 > output.txt
 
-Pretty easy, right?  For additional options type `yakr --help`.
+For additional options type `yakr --help`.
 
 ##Fun Stuff
 To be added soon.

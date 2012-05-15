@@ -21,10 +21,10 @@
 
 Gem::Specification.new do |s|
 	s.name			= 'yakr'
-	s.version		= '0.2'
-	s.date			= '2012-05-14'
+	s.version		= '0.2.1'
+	s.date			= '2012-05-15'
 	s.summary		= 'TCP/IP output tool'
-	s.description	= 'Yakr is a minimalist command-line network tool for sending command output or arbitrary data to a remote host using TCP/IP.'
+	s.description	= 'Yakr is a minimalist network tool for forwarding command output or arbitrary data to a remote host.'
 	s.authors		= ["Marc Ransome"]
 	s.email			= 'marc.ransome@fidgetbox.co.uk'
 	s.files			= `git ls-files`.split("\n")

@@ -27,7 +27,7 @@ require 'timeout'
 
 class Yakr
 	
-	VERSION = "0.2"
+	VERSION = "0.2.1"
 	REQUIRE_SERVER = 0.1
 	USAGE_BANNER = "Use `#{File.basename($0)} --help` for available options."
 
@@ -121,7 +121,7 @@ class Yakr
 		
 			if @line.start_with?('yakr=>')
 				
-				puts "yakr: connected to host #{host} port #{port}"
+				puts "yakr: connected to #{host} on port #{port}"
 				
 				# read from standard input and send
 				# text line by line to server
