@@ -3,20 +3,20 @@
 #
 #  Copyright (c) 2012, Marc Ransome <marc.ransome@fidgetbox.co.uk>
 #
-#  This file is part of Yak.
+#  This file is part of Yakr.
 #
-#  Yak is free software: you can redistribute it and/or modify
+#  Yakr is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
 #  the Free Software Foundation, either version 3 of the License, or
 #  (at your option) any later version.
 #
-#  Yak is distributed in the hope that it will be useful,
+#  Yakr is distributed in the hope that it will be useful,
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #  GNU General Public License for more details.
 #
 #  You should have received a copy of the GNU General Public License
-#  along with Yak.  If not, see <http://www.gnu.org/licenses/>.
+#  along with Yakr.  If not, see <http://www.gnu.org/licenses/>.
 #
 
 class OptionReader
@@ -71,7 +71,7 @@ class OptionReader
 			opts.separator "Misc options:"
 
 			opts.on("-v", "--version", "Display version information") do
-				puts "#{File.basename($0).capitalize} #{Yak::VERSION} Copyright (C) 2012 Marc Ransome <marc.ransome@fidgetbox.co.uk>"
+				puts "#{File.basename($0).capitalize} #{Yakr::VERSION} Copyright (C) 2012 Marc Ransome <marc.ransome@fidgetbox.co.uk>"
 				puts "This program comes with ABSOLUTELY NO WARRANTY, use it at your own risk."
 				puts "This is free software, and you are welcome to redistribute it under"
 				puts "certain conditions; see LICENSE.txt for details."

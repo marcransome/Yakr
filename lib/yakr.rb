@@ -1,33 +1,34 @@
 #
-#  yak.rb
+#  yakr.rb
 #
 #  Copyright (c) 2012, Marc Ransome <marc.ransome@fidgetbox.co.uk>
 #
-#  This file is part of Yak.
+#  This file is part of Yakr.
 #
-#  Yak is free software: you can redistribute it and/or modify
+#  Yakr is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
 #  the Free Software Foundation, either version 3 of the License, or
 #  (at your option) any later version.
 #
-#  Yak is distributed in the hope that it will be useful,
+#  Yakr is distributed in the hope that it will be useful,
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #  GNU General Public License for more details.
 #
 #  You should have received a copy of the GNU General Public License
-#  along with Yak.  If not, see <http://www.gnu.org/licenses/>.
+#  along with Yakr.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-require 'yak/optionreader'
+require 'yakr/optionreader'
 require 'optparse'
 require 'ostruct'
 require 'socket'
 require 'timeout'
 
-class Yak
+class Yakr
 	
 	VERSION = "0.2"
+	REQUIRE_SERVER = 0.1
 	USAGE_BANNER = "Use `#{File.basename($0)} --help` for available options."
 
 	@server = nil
@@ -108,6 +109,9 @@ class Yak
 		
 		begin
 			timeout(30) do
+				
+				puts "Attempting connection.."
+				
 				# establish connection
 				@server = TCPSocket.open(host, port)
 				
@@ -115,7 +119,9 @@ class Yak
 				@line = @server.readline
 			end
 		
-			if @line.start_with?('yak=>')
+			if @line.start_with?('yakr=>')
+				
+				puts "yakr: connected to host #{host} port #{port}"
 				
 				# read from standard input and send
 				# text line by line to server
@@ -150,7 +156,7 @@ class Yak
 			@server = TCPServer.open(port)
 			loop do
 				client = @server.accept
-				client.puts "yak=>version:#{VERSION}"
+				client.puts "yakr=>version:#{VERSION}"
 
 				max_lines = lines_arg
 				
