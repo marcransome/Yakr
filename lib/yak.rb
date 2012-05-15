@@ -28,9 +28,8 @@ require 'timeout'
 class Yak
 	
 	VERSION = "0.2"
-	
-	# short usage banner
-	@simple_usage = "Use `#{File.basename($0)} --help` for available options."
+	USAGE_BANNER = "Use `#{File.basename($0)} --help` for available options."
+
 	@server = nil
 	@line = nil
 	
@@ -38,7 +37,7 @@ class Yak
 		
 		# test for zero arguments
 		if ARGV.empty? then
-			puts @simple_usage
+			puts USAGE_BANNER
 			exit 1
 		end
 		
@@ -47,24 +46,24 @@ class Yak
 			options = OptionReader.parse(ARGV)
 		rescue OptionParser::InvalidOption => t
 			puts t
-			puts @simple_usage
+			puts USAGE_BANNER
 			exit
 		rescue OptionParser::MissingArgument => m
 			puts m
-			puts @simple_usage
+			puts USAGE_BANNER
 			exit
 		end
 		
 		# ensure host argument is specified if a port is specified
 		if options.connect_port.any? and !options.connect_host.any?
 			puts "host connect: no host specified"
-			puts @simple_usage
+			puts USAGE_BANNER
 			exit 1
 		end
 		
 		if options.connect_host.any? and !options.connect_port.any?
 			puts "host connect: no port specified"
-			puts @simple_usage
+			puts USAGE_BANNER
 			exit 1
 		end
 		
@@ -77,7 +76,7 @@ class Yak
 		if options.connect_port.any?
 			if !(options.connect_port.first.to_i > 0) and !(options.connect_port.first.to_i < 65535)
 				puts "invalid port: #{options.connect_port.first.to_s}"
-				puts @simple_usage
+				puts USAGE_BANNER
 				exit 1
 			end
 		end
@@ -89,7 +88,7 @@ class Yak
 				
 			else
 				puts "invalid port: #{options.connect_port.first.to_s}"
-				puts @simple_usage
+				puts USAGE_BANNER
 				exit 1
 			end
 		else
@@ -126,7 +125,7 @@ class Yak
 				end
 			else
 				puts "host connect: unexpected server response"
-				puts @simple_usage
+				puts USAGE_BANNER
 				exit 1
 			end
 		
@@ -135,11 +134,11 @@ class Yak
 			exit 1
 		rescue Timeout::Error => ex
 			puts "host connect: timed out"
-			puts @simple_usage
+			puts USAGE_BANNER
 			exit 1
 		rescue
 			puts "host connect: unable to connect"
-			puts @simple_usage
+			puts USAGE_BANNER
 			exit 1
 		end		
 	end
