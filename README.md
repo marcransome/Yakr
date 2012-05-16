@@ -27,7 +27,7 @@ To launch a server instance of Yakr specify a port number to listen for an incom
 
 	$ yakr -l 2600
 
-For Yakr to operate as a client specify both a remote host and port number using the `-c HOST` and `-p NUM` arguments.  For example:
+For Yakr to operate as a client and connect to a remote Yakr instance you'll need to specify both a host and port number using the `-c HOST` and `-p NUM` arguments.  For example:
 
 	$ yakr -c remote.server.com -p 2600
 
