@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Yakr by marcransome</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Yakr</h1>
+        <p>A minimalist network tool for forwarding command output or arbitrary data to a remote host</p>
+        <p class="view"><a href="https://github.com/marcransome/Yakr">View the Project on GitHub <small>marcransome/Yakr</small></a></p>
+        <ul>
+          <li><a href="https://github.com/marcransome/Yakr/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/marcransome/Yakr/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/marcransome/Yakr">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>Overview</h2>
+
+<p>Yakr is a command-line tool for UNIX-like systems that allows you to forward command output or arbitrary data to a remote host via a TCP/IP network connection.  In fact, you can do some incredibly fun things with it.  It is built entirely in <a href="http://ruby-lang.org/">Ruby</a>, and is intended to be minimalist in its function.</p>
+
+<h2>Caveats</h2>
+
+<p>Yakr makes no attempt to validate the identity of the remote host, nor does it encrypt the data that it sends.  If you plan to use Yakr to forward data over an open network then a <a href="http://en.wikipedia.org/wiki/Tunneling_protocol#Secure_shell_tunneling">secure shell tunnel</a> is highly recommended.</p>
+
+<h2>Prerequisites</h2>
+
+<p>A working Ruby installation (version 1.9 or greater) is required for Yakr to work.  For more information refer to the <a href="http://www.ruby-lang.org/en/downloads/">official installation procedure</a>.</p>
+
+<h2>Installation</h2>
+
+<p>Installing Yakr is as easy as:</p>
+
+<pre><code>$ gem install yakr
+</code></pre>
+
+<h2>Using Yakr</h2>
+
+<p>Yakr functions as either a server or client; it can listen for an incoming connection, or attempt to establish an outgoing connection to another instance of Yakr.</p>
+
+<p>The following command-line arguments allow you to control which mode Yakr should operate in:</p>
+
+<pre><code>-c, --connect HOST               Specify the remote host to connect to
+-p, --port NUM                   Port number for outgoing connection
+-l, --listen NUM                 Port number for incoming connection
+</code></pre>
+
+<p>To launch a server instance of Yakr specify a port number to listen for an incoming connection using the <code>-l  NUM</code> command-line argument (where <em>NUM</em> is a valid port between 0 and 65535).  Yakr will listen for incoming connections on the specified port, and output any data that it receives from a client once connected.  The following command would launch a Yakr instance that listens for clients on port 2600:</p>
+
+<pre><code>$ yakr -l 2600
+</code></pre>
+
+<p>For Yakr to operate as a client and connect to a remote Yakr instance you'll need to specify both a host and port number using the <code>-c HOST</code> and <code>-p NUM</code> arguments.  For example:</p>
+
+<pre><code>$ yakr -c remote.server.com -p 2600
+</code></pre>
+
+<p>Once a connection has been established, Yakr reads data from the standard input stream (line by line) and forwards it to the remote instance.  Typing something and pressing the return key will send the data to the remote instance, which will in turn output the data to the screen.</p>
+
+<p>Yakr can forward input piped from other commands too:</p>
+
+<pre><code>$ echo 'Hello World' | yakr -c remote.server.com -p 2600
+</code></pre>
+
+<p>The server instance of Yakr can be told to redirect the data it receives to a file (in this case a file named <em>output.txt</em>):</p>
+
+<pre><code>$ yakr -l 2600 &gt; output.txt
+</code></pre>
+
+<p>For additional options type <code>yakr --help</code>.</p>
+
+<h2>Fun Stuff</h2>
+
+<p>To be added soon.</p>
+
+<h2>License</h2>
+
+<p>Yakr is free software, and you are welcome to redistribute it under certain conditions.  See the <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a> for more details.</p>
+
+<h2>Comments or suggestions?</h2>
+
+<p>Email me at <a href="marc.ransome@fidgetbox.co.uk">marc.ransome@fidgetbox.co.uk</a> with bug reports, feature requests or general comments and follow <a href="http://www.twitter.com/marcransome">@marcransome</a> for updates.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/marcransome">marcransome</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-31478860-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
