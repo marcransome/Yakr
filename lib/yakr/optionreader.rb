@@ -39,11 +39,6 @@ class OptionReader
 		opts = OptionParser.new do |opts|
 			opts.banner = "Usage: #{File.basename($0)} [-c HOST -p PORT] | [-l PORT -m NUM]"
 
-			opts.separator ""			
-
-			opts.separator "#{File.basename($0).capitalize} is either listening for a remote connection or connected"
-			opts.separator "to a remote host.  These options are mutually exclusive."
-
 			opts.separator ""
 			opts.separator "Client mode options:"
 
