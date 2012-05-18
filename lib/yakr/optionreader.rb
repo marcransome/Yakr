@@ -37,7 +37,7 @@ class OptionReader
 		options.limit_lines = 0
 
 		opts = OptionParser.new do |opts|
-			opts.banner = "Usage: #{File.basename($0)} [-c HOST -p PORT] | [-l PORT -m NUM]"
+			opts.banner = "Usage: #{File.basename($0)} -c HOST -p PORT | -l PORT [-m NUM]"
 
 			opts.separator ""
 			opts.separator "Client mode options:"
@@ -46,14 +46,14 @@ class OptionReader
 				options.connect_host << host
 			end
 
-			opts.on("-p", "--port NUM", "Port number for outgoing connection") do |port|
+			opts.on("-p", "--port PORT", "Port number for outgoing connection") do |port|
 				options.connect_port << port
 			end
 
 			opts.separator ""
 			opts.separator "Server mode options:"
 
-			opts.on("-l", "--listen NUM", "Port number for incoming connection") do |port|
+			opts.on("-l", "--listen PORT", "Port number for incoming connection") do |port|
 				options.listen_port << port
 			end
 			
