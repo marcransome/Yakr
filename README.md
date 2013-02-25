@@ -44,7 +44,11 @@ The server instance of Yakr can be told to redirect the data it receives to a fi
 For additional options type `yakr --help`.
 
 ##Fun Stuff
-To be added soon.
+It's possible to mimic a simple chat interface using a split terminal window (courtesy of the wonderful [iTerm 2](http://http://www.iterm2.com)):
+
+![Split terminal conversation](http://fidgetbox.co.uk/github/split_yakr.png)
+
+The top pane shows the output of a local instance of Yakr with a remote client connected. This acts as our incoming chat window. The bottom pane shows another local instance of Yakr connected to the remote system as a client. This acts as our outgoing message window. Crude, but perfectly usable.
 
 ##License
 Yakr is free software, and you are welcome to redistribute it under certain conditions.  See the [GNU General Public License](http://www.gnu.org/licenses/gpl.html) for more details.
