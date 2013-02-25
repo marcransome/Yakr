@@ -27,7 +27,7 @@ require 'timeout'
 
 class Yakr
 	
-	VERSION = "0.2.1"
+	VERSION = "0.2.3"
 	REQUIRE_SERVER = 0.1
 	USAGE_BANNER = "Use `#{File.basename($0)} --help` for available options."
 

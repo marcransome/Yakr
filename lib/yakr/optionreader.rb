@@ -24,13 +24,6 @@ class OptionReader
 	def self.parse(args)
 
 		options = OpenStruct.new
-		options.output = []
-		options.verbose = false
-		options.hide_title = false
-		options.hide_artist = false
-		options.hide_album = false
-		options.hide_location = false
-		options.hide_tracknum = false
 		options.connect_host = []
 		options.connect_port = []
 		options.listen_port = []
