@@ -89,8 +89,6 @@ class Yakr
 				puts USAGE_BANNER
 				exit 1
 			end
-		else
-			options.listen_port << "4000"
 		end
 	
 		# assume connection mode wherever a host has been specified,
