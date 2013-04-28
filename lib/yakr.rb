@@ -75,7 +75,7 @@ class Yakr
 		
 		# test for invalid host port
 		if options.connect_port.any?
-			if !(options.connect_port.first.to_i > 0 and options.connect_port.first.to_i < 65535)
+			if not (options.connect_port.first.to_i > 0 and options.connect_port.first.to_i < 65535)
 				puts "invalid port: #{options.connect_port.first.to_s}"
 				puts USAGE_BANNER
 				exit 1
@@ -84,10 +84,7 @@ class Yakr
 		
 		# validate listen port
 		if options.listen_port.any?
-			if options.listen_port.first.to_i > 0 and options.listen_port.first.to_i < 65535
-				# valid port provided
-				
-			else
+			if not (options.listen_port.first.to_i > 0 and options.listen_port.first.to_i < 65535)
 				puts "invalid port: #{options.listen_port.first.to_s}"
 				puts USAGE_BANNER
 				exit 1
