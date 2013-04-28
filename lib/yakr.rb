@@ -83,17 +83,17 @@ class Yakr
 		end
 		
 		# validate listen port
-		if options.connect_port.any?
-			if options.connect_port.first.to_i > 0 and options.connect_port.first.to_i < 65535
+		if options.listen_port.any?
+			if options.listen_port.first.to_i > 0 and options.listen_port.first.to_i < 65535
 				# valid port provided
 				
 			else
-				puts "invalid port: #{options.connect_port.first.to_s}"
+				puts "invalid port: #{options.listen_port.first.to_s}"
 				puts USAGE_BANNER
 				exit 1
 			end
 		else
-			options.connect_port << "4000"
+			options.listen_port << "4000"
 		end
 	
 		# assume connection mode wherever a host has been specified,
