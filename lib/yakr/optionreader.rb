@@ -24,10 +24,6 @@ class OptionReader
 	def self.parse(args)
 
 		options = OpenStruct.new
-		options.connect_host = []
-		options.connect_port = []
-		options.listen_port = []
-		options.limit_lines = 0
 
 		opts = OptionParser.new do |opts|
 			opts.banner = "Usage: #{File.basename($0)} -c HOST -p PORT | -l PORT [-m NUM]"
@@ -36,25 +32,24 @@ class OptionReader
 			opts.separator "Client mode options:"
 
 			opts.on("-c", "--connect HOST", "Specify the remote host to connect to") do |host|
-				options.connect_host << host
+				options.connect_host = host
 			end
 
 			opts.on("-p", "--port PORT", "Port number for outgoing connection") do |port|
-				options.connect_port << port
+				options.connect_port = port
 			end
 
 			opts.separator ""
 			opts.separator "Server mode options:"
 
 			opts.on("-l", "--listen PORT", "Port number for incoming connection") do |port|
-				options.listen_port << port
+				options.listen_port = port
 			end
 			
 			opts.on("-m", "--max NUM", "Limit output to NUM lines, then exit") do |lines|
 				options.limit_lines = lines
 			end
-
-
+			
 			opts.separator ""
 			opts.separator "Misc options:"
 
