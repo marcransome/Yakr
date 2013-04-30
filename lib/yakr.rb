@@ -27,7 +27,7 @@ require 'timeout'
 
 class Yakr
 	
-	VERSION = "0.2.3"
+	VERSION = "0.2.4"
 	REQUIRE_SERVER = 0.1
 	USAGE_BANNER = "Use `#{File.basename($0)} --help` for available options."
 
@@ -110,7 +110,7 @@ class Yakr
 				puts "Attempting connection.."
 				
 				# establish connection
-				@server = TCPSocket.open(host, port.to_i)
+				@server = TCPSocket.open(host, port)
 				
 				# wait for server response
 				@line = @server.readline
@@ -147,7 +147,7 @@ class Yakr
 	def self.listen(port, max_lines)
 		begin
 			limit_output = true if max_lines > 0
-			@server = TCPServer.open(port.to_i)
+			@server = TCPServer.open(port)
 			loop do
 				client = @server.accept
 				client.puts "yakr=>version:#{VERSION}"

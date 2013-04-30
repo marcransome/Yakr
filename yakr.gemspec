@@ -21,8 +21,8 @@
 
 Gem::Specification.new do |s|
 	s.name			= 'yakr'
-	s.version		= '0.2.3'
-	s.date			= '2013-02-25'
+	s.version		= '0.2.4'
+	s.date			= '2013-04-30'
 	s.summary		= 'TCP/IP output tool'
 	s.description	= 'Yakr is a minimalist network tool for forwarding command output or arbitrary data to a remote host.'
 	s.authors		= ["Marc Ransome"]
