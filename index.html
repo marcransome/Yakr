@@ -1,52 +1,79 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Yakr by Marc Ransome</title>
+    <meta name="viewport" content="width=640" />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Yakr by marcransome</title>
   </head>
+
   <body>
-    <div class="wrapper">
+    <a id="forkme_banner" href="https://github.com/marcransome/Yakr">View on GitHub</a>
+    <div class="shell">
+
       <header>
-        <h1>Yakr</h1>
-        <p>A minimalist network tool for forwarding command output or arbitrary data to a remote host</p>
-        <p class="view"><a href="https://github.com/marcransome/Yakr">View the Project on GitHub <small>marcransome/Yakr</small></a></p>
-        <ul>
-          <li><a href="https://github.com/marcransome/Yakr/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/marcransome/Yakr/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/marcransome/Yakr">View On <strong>GitHub</strong></a></li>
-        </ul>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Yakr</h1>
+            <h2>A minimalist network tool for forwarding command output or arbitrary data to a remote host</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
       </header>
-      <section>
-        <h2>Overview</h2>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/marcransome/Yakr/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/marcransome/Yakr/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>
+<a name="yakr" class="anchor" href="#yakr"><span class="octicon octicon-link"></span></a>Yakr</h1>
+
+<h2>
+<a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h2>
 
 <p>Yakr is a command-line tool for UNIX-like systems that allows you to forward command output or arbitrary data to a remote host via a TCP/IP network connection.  In fact, you can do some incredibly fun things with it.  It is built entirely in <a href="http://ruby-lang.org/">Ruby</a>, and is intended to be minimalist in its function.</p>
 
-<h2>Caveats</h2>
+<h2>
+<a name="caveats" class="anchor" href="#caveats"><span class="octicon octicon-link"></span></a>Caveats</h2>
 
 <p>Yakr makes no attempt to validate the identity of the remote host, nor does it encrypt the data that it sends.  If you plan to use Yakr to forward data over an open network then a <a href="http://en.wikipedia.org/wiki/Tunneling_protocol#Secure_shell_tunneling">secure shell tunnel</a> is highly recommended.</p>
 
-<h2>Prerequisites</h2>
+<h2>
+<a name="prerequisites" class="anchor" href="#prerequisites"><span class="octicon octicon-link"></span></a>Prerequisites</h2>
 
 <p>A working Ruby installation (version 1.9 or greater) is required for Yakr to work.  For more information refer to the <a href="http://www.ruby-lang.org/en/downloads/">official installation procedure</a>.</p>
 
-<h2>Installation</h2>
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>Installing Yakr is as easy as:</p>
 
 <pre><code>$ gem install yakr
 </code></pre>
 
-<h2>Using Yakr</h2>
+<h2>
+<a name="using-yakr" class="anchor" href="#using-yakr"><span class="octicon octicon-link"></span></a>Using Yakr</h2>
 
 <p>Yakr functions as either a server or client; it can listen for an incoming connection, or attempt to establish an outgoing connection to another instance of Yakr.</p>
 
@@ -81,26 +108,40 @@
 
 <p>For additional options type <code>yakr --help</code>.</p>
 
-<h2>Fun Stuff</h2>
+<h2>
+<a name="fun-stuff" class="anchor" href="#fun-stuff"><span class="octicon octicon-link"></span></a>Fun Stuff</h2>
 
-<p>It's possible to mimic a simple chat interface using a split terminal window (courtesy of the wonderful <a href="http://www.iterm2.com">iTerm 2</a>):
-<img src="http://fidgetbox.co.uk/github/split_yakr.png" alt="Split terminal conversation">
-The top pane shows the output of a local instance of Yakr with a remote client connected.  This acts as our incoming chat window.  The bottom pane shows another local instance of Yakr connected to the remote system as a client.  This acts as our outgoing message window.  Crude, but perfectly usable. </p>
+<p>It's possible to mimic a simple chat interface using a split terminal window (courtesy of the wonderful <a href="http://www.iterm2.com">iTerm 2</a>):</p>
 
-<h2>License</h2>
+<p><img src="http://fidgetbox.co.uk/github/split_yakr.png" alt="Split terminal conversation"></p>
+
+<p>The top pane shows the output of a local instance of Yakr with a remote client connected. This acts as our incoming chat window. The bottom pane shows another local instance of Yakr connected to the remote system as a client. This acts as our outgoing message window. Crude, but perfectly usable.</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>Yakr is free software, and you are welcome to redistribute it under certain conditions.  See the <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a> for more details.</p>
 
-<h2>Comments or suggestions?</h2>
+<h2>
+<a name="comments-or-suggestions" class="anchor" href="#comments-or-suggestions"><span class="octicon octicon-link"></span></a>Comments or suggestions?</h2>
 
-<p>Email me at <a href="marc.ransome@fidgetbox.co.uk">marc.ransome@fidgetbox.co.uk</a> with bug reports, feature requests or general comments and follow <a href="http://www.twitter.com/marcransome">@marcransome</a> for updates.</p>
+<p>Email me at <a href="mailto://marc.ransome@fidgetbox.co.uk">marc.ransome@fidgetbox.co.uk</a> with bug reports, feature requests or general comments and follow <a href="http://www.twitter.com/marcransome">@marcransome</a> for updates.</p>
       </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/marcransome">marcransome</a> can be found on <a href="https://github.com/marcransome/Yakr">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
     </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/marcransome">marcransome</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
