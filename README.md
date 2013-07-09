@@ -44,7 +44,7 @@ The server instance of Yakr can be told to redirect the data it receives to a fi
 For additional options type `yakr --help`.
 
 ##Fun Stuff
-It's possible to mimic a simple chat interface using a split terminal window (courtesy of the wonderful [iTerm 2](http://http://www.iterm2.com)):
+It's possible to mimic a simple chat interface using a split terminal window (courtesy of the wonderful [iTerm 2](http://www.iterm2.com)):
 
 ![Split terminal conversation](http://fidgetbox.co.uk/github/split_yakr.png)
 
