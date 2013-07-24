@@ -1,20 +1,20 @@
-#Yakr
+# Yakr
 
-##Overview
+## Overview
 Yakr is a command-line tool for UNIX-like systems that allows you to forward command output or arbitrary data to a remote host via a TCP/IP network connection.  In fact, you can do some incredibly fun things with it.  It is built entirely in [Ruby](http://ruby-lang.org/), and is intended to be minimalist in its function.
 
-##Caveats
+## Caveats
 Yakr makes no attempt to validate the identity of the remote host, nor does it encrypt the data that it sends.  If you plan to use Yakr to forward data over an open network then a [secure shell tunnel](http://en.wikipedia.org/wiki/Tunneling_protocol#Secure_shell_tunneling) is highly recommended.
 
-##Prerequisites
+## Prerequisites
 A working Ruby installation (version 1.9 or greater) is required for Yakr to work.  For more information refer to the [official installation procedure](http://www.ruby-lang.org/en/downloads/).
 
-##Installation
+## Installation
 Installing Yakr is as easy as:
 
 	$ gem install yakr
 
-##Using Yakr
+## Using Yakr
 Yakr functions as either a server or client; it can listen for an incoming connection, or attempt to establish an outgoing connection to another instance of Yakr.
 
 The following command-line arguments allow you to control which mode Yakr should operate in:
@@ -43,15 +43,15 @@ The server instance of Yakr can be told to redirect the data it receives to a fi
 
 For additional options type `yakr --help`.
 
-##Fun Stuff
+## Fun Stuff
 It's possible to mimic a simple chat interface using a split terminal window (courtesy of the wonderful [iTerm 2](http://www.iterm2.com)):
 
 ![Split terminal conversation](http://fidgetbox.co.uk/github/split_yakr.png)
 
 The top pane shows the output of a local instance of Yakr with a remote client connected. This acts as our incoming chat window. The bottom pane shows another local instance of Yakr connected to the remote system as a client. This acts as our outgoing message window. Crude, but perfectly usable.
 
-##License
+## License
 Yakr is free software, and you are welcome to redistribute it under certain conditions.  See the [GNU General Public License](http://www.gnu.org/licenses/gpl.html) for more details.
 
-##Comments or suggestions?
+## Comments or suggestions?
 Email me at [marc.ransome@fidgetbox.co.uk](mailto://marc.ransome@fidgetbox.co.uk) with bug reports, feature requests or general comments and follow [@marcransome](http://www.twitter.com/marcransome) for updates.
