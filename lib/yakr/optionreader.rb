@@ -21,59 +21,59 @@
 
 class OptionReader
 
-	def self.parse(args)
+  def self.parse(args)
 
-		options = OpenStruct.new
+    options = OpenStruct.new
 
-		opts = OptionParser.new do |opts|
-			opts.banner = "Usage: #{File.basename($0)} -c HOST -p PORT | -l PORT [-m NUM]"
+    opts = OptionParser.new do |opts|
+      opts.banner = "Usage: #{File.basename($0)} -c HOST -p PORT | -l PORT [-m NUM]"
 
-			opts.separator ""
-			opts.separator "Client mode options:"
+      opts.separator ""
+      opts.separator "Client mode options:"
 
-			opts.on("-c", "--connect HOST", "Specify the remote host to connect to") do |host|
-				options.connect_host = host
-			end
+      opts.on("-c", "--connect HOST", "Specify the remote host to connect to") do |host|
+        options.connect_host = host
+      end
 
-			opts.on("-p", "--port PORT", "Port number for outgoing connection") do |port|
-				options.connect_port = port
-			end
+      opts.on("-p", "--port PORT", "Port number for outgoing connection") do |port|
+        options.connect_port = port
+      end
 
-			opts.separator ""
-			opts.separator "Server mode options:"
+      opts.separator ""
+      opts.separator "Server mode options:"
 
-			opts.on("-l", "--listen PORT", "Port number for incoming connection") do |port|
-				options.listen_port = port
-			end
-			
-			opts.on("-m", "--max NUM", "Limit output to NUM lines, then exit") do |lines|
-				options.limit_lines = lines
-			end
-			
-			opts.separator ""
-			opts.separator "Misc options:"
+      opts.on("-l", "--listen PORT", "Port number for incoming connection") do |port|
+        options.listen_port = port
+      end
 
-			opts.on("-v", "--version", "Display version information") do
-				puts "#{File.basename($0).capitalize} #{Yakr::VERSION} Copyright (C) 2012 Marc Ransome <marc.ransome@fidgetbox.co.uk>"
-				puts "This program comes with ABSOLUTELY NO WARRANTY, use it at your own risk."
-				puts "This is free software, and you are welcome to redistribute it under"
-				puts "certain conditions; see LICENSE.txt for details."
-				exit
-			end
+      opts.on("-m", "--max NUM", "Limit output to NUM lines, then exit") do |lines|
+        options.limit_lines = lines
+      end
 
-			opts.on_tail("-h", "--help", "Show this screen") do
-				puts opts
-				exit
-			end
-		end
+      opts.separator ""
+      opts.separator "Misc options:"
 
-		# parse then remove the remaining arguments
-		opts.parse!(args)
+      opts.on("-v", "--version", "Display version information") do
+        puts "#{File.basename($0).capitalize} #{Yakr::VERSION} Copyright (C) 2012 Marc Ransome <marc.ransome@fidgetbox.co.uk>"
+        puts "This program comes with ABSOLUTELY NO WARRANTY, use it at your own risk."
+        puts "This is free software, and you are welcome to redistribute it under"
+        puts "certain conditions; see LICENSE.txt for details."
+        exit
+      end
 
-		# return the options array
-		options
+      opts.on_tail("-h", "--help", "Show this screen") do
+        puts opts
+        exit
+      end
+    end
 
-	end # def self.parse(args)
+    # parse then remove the remaining arguments
+    opts.parse!(args)
+
+    # return the options array
+    options
+
+  end # def self.parse(args)
 
 end # class OptionReader
 
