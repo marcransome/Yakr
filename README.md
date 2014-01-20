@@ -46,7 +46,7 @@ For additional options type `yakr --help`.
 ## Fun Stuff
 It's possible to mimic a simple chat interface using a split terminal window (courtesy of the wonderful [iTerm 2](http://www.iterm2.com)):
 
-![Split terminal conversation](http://fidgetbox.co.uk/github/split_yakr.png)
+![Split terminal conversation](http://www.fidgetbox.co.uk/github/yakr.png)
 
 The top pane shows the output of a local instance of Yakr with a remote client connected. This acts as our incoming chat window. The bottom pane shows another local instance of Yakr connected to the remote system as a client. This acts as our outgoing message window. Crude, but perfectly usable.
 
